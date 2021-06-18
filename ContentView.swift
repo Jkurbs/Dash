@@ -8,9 +8,36 @@
 import SwiftUI
 
 struct ContentView: View {
+
+    let arrays = [["A", "B", "C", "D"], ["E", "F", "G", "H"]]
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            List {
+                ForEach(arrays, id: \.self) { item in
+                    NavigationLink( destination: DestinationView(items: Array(item[1..<item.count]))) {
+                        Text(item.first!).font(.subheadline)
+                    }
+                }
+            }
+            .navigationBarTitle("Dash")
+        }
+    }
+}
+
+struct DestinationView : View {
+    var items: [String]
+    
+    var body: some View {
+        List {
+            if self.items.count < 0 {
+                Text("")
+            } else {
+                NavigationLink( destination: DestinationView(items: Array(items[1..<items.count]))) {
+                    Text(items[0]).font(.subheadline)
+                }
+            }
+        }
     }
 }
 
