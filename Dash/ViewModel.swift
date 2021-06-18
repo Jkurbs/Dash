@@ -22,7 +22,7 @@ struct ViewModel {
     func list() -> [[String.SubSequence]]? {
         guard let items = self.items else { return nil }
         var array = [String]()
-        for (i, j ) in items.enumerated() {
+        for (i, j) in items.enumerated() {
             if i > 0 && i != items.count - 1 {
                 if !items[i + 1].contains(j) {
                     array.append(j)
